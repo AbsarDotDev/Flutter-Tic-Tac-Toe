@@ -17,20 +17,23 @@ class MainMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Responsive(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomButton(
-              onTap: () => createRoom(context),
-              text: 'Create Room',
-            ),
-            const SizedBox(height: 20),
-            CustomButton(
-              onTap: () => joinRoom(context),
-              text: 'Join Room',
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Responsive(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomButton(
+                onTap: () => createRoom(context),
+                text: 'Create Room',
+              ),
+              const SizedBox(height: 20),
+              CustomButton(
+                onTap: () => joinRoom(context),
+                text: 'Join Room',
+              ),
+            ],
+          ),
         ),
       ),
     );
