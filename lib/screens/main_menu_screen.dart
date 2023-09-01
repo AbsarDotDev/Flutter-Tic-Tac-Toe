@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/responsive/responsive.dart';
+import 'package:tictactoe/utils/route_names.dart';
 import 'package:tictactoe/utils/routes.dart';
 import 'package:tictactoe/widgets/custom_button.dart';
 
@@ -7,11 +8,11 @@ class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({Key? key}) : super(key: key);
 
   void createRoom(BuildContext context) {
-    Navigator.pushNamed(context, Routes.createRoomScreen);
+    Navigator.pushNamed(context, RouteName.createRoom);
   }
 
   void joinRoom(BuildContext context) {
-    Navigator.pushNamed(context, Routes.joinRoomScreen);
+    Navigator.pushNamed(context, RouteName.joinRoom);
   }
 
   @override
