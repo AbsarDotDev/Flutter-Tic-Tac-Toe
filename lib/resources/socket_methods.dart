@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tictactoe/provider/room_data_provider.dart';
 import 'package:tictactoe/resources/socket_client.dart';
 import 'package:tictactoe/screens/game_screen.dart';
 import 'package:socket_io_client/socket_io_client.dart';
+import 'package:tictactoe/utils/route_names.dart';
 
 class SocketMethods {
   final _socketClient = SocketClient.instance.socket!;
@@ -36,13 +39,13 @@ class SocketMethods {
   }
 
   // LISTENERS
-  // void createRoomSuccessListener(BuildContext context) {
-  //   _socketClient.on('createRoomSuccess', (room) {
-  //     Provider.of<RoomDataProvider>(context, listen: false)
-  //         .updateRoomData(room);
-  //     Navigator.pushNamed(context, GameScreen.routeName);
-  //   });
-  // }
+  void createRoomSuccessListener(BuildContext context) {
+    _socketClient.on('createRoomSuccess', (room) {
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updateRoomData(room);
+      Navigator.pushNamed(context, RouteName.game);
+    });
+  }
 
   // void joinRoomSuccessListener(BuildContext context) {
   //   _socketClient.on('joinRoomSuccess', (room) {

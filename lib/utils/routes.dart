@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/screens/create_room_screen.dart';
+import 'package:tictactoe/screens/game_screen.dart';
 import 'package:tictactoe/screens/join_room_screen.dart';
 import 'package:tictactoe/screens/main_menu_screen.dart';
 import 'package:tictactoe/utils/route_names.dart';
@@ -20,6 +21,10 @@ class Routes {
           builder: (BuildContext context) => const JoinRoomScreen(),
         );
 
+      case RouteName.game:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => const GameScreen(),
+        );
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(
