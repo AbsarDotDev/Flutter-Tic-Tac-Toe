@@ -5,6 +5,7 @@ import 'package:tictactoe/resources/socket_client.dart';
 import 'package:tictactoe/screens/game_screen.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:tictactoe/utils/route_names.dart';
+import 'package:tictactoe/utils/utils.dart';
 
 class SocketMethods {
   final _socketClient = SocketClient.instance.socket!;
@@ -47,37 +48,37 @@ class SocketMethods {
     });
   }
 
-  // void joinRoomSuccessListener(BuildContext context) {
-  //   _socketClient.on('joinRoomSuccess', (room) {
-  //     Provider.of<RoomDataProvider>(context, listen: false)
-  //         .updateRoomData(room);
-  //     Navigator.pushNamed(context, GameScreen.routeName);
-  //   });
-  // }
+  void joinRoomSuccessListener(BuildContext context) {
+    _socketClient.on('joinRoomSuccess', (room) {
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updateRoomData(room);
+      Navigator.pushNamed(context, RouteName.game);
+    });
+  }
 
-  // void errorOccuredListener(BuildContext context) {
-  //   _socketClient.on('errorOccurred', (data) {
-  //     showSnackBar(context, data);
-  //   });
-  // }
+  void errorOccuredListener(BuildContext context) {
+    _socketClient.on('errorOccurred', (data) {
+      showSnackBar(context, data);
+    });
+  }
 
-  // void updatePlayersStateListener(BuildContext context) {
-  //   _socketClient.on('updatePlayers', (playerData) {
-  //     Provider.of<RoomDataProvider>(context, listen: false).updatePlayer1(
-  //       playerData[0],
-  //     );
-  //     Provider.of<RoomDataProvider>(context, listen: false).updatePlayer2(
-  //       playerData[1],
-  //     );
-  //   });
-  // }
+  void updatePlayersStateListener(BuildContext context) {
+    _socketClient.on('updatePlayers', (playerData) {
+      Provider.of<RoomDataProvider>(context, listen: false).updatePlayer1(
+        playerData[0],
+      );
+      Provider.of<RoomDataProvider>(context, listen: false).updatePlayer2(
+        playerData[1],
+      );
+    });
+  }
 
-  // void updateRoomListener(BuildContext context) {
-  //   _socketClient.on('updateRoom', (data) {
-  //     Provider.of<RoomDataProvider>(context, listen: false)
-  //         .updateRoomData(data);
-  //   });
-  // }
+  void updateRoomListener(BuildContext context) {
+    _socketClient.on('updateRoom', (data) {
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updateRoomData(data);
+    });
+  }
 
   // void tappedListener(BuildContext context) {
   //   _socketClient.on('tapped', (data) {

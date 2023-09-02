@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/resources/socket_methods.dart';
 import 'package:tictactoe/responsive/responsive.dart';
 import 'package:tictactoe/widgets/custom_button.dart';
 import 'package:tictactoe/widgets/custom_text.dart';
@@ -15,15 +16,15 @@ class JoinRoomScreen extends StatefulWidget {
 class _JoinRoomScreenState extends State<JoinRoomScreen> {
   final TextEditingController _gameIdController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
-  // final SocketMethods _socketMethods = SocketMethods();
+  final SocketMethods _socketMethods = SocketMethods();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _socketMethods.joinRoomSuccessListener(context);
-  //   _socketMethods.errorOccuredListener(context);
-  //   _socketMethods.updatePlayersStateListener(context);
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _socketMethods.joinRoomSuccessListener(context);
+    _socketMethods.errorOccuredListener(context);
+    _socketMethods.updatePlayersStateListener(context);
+  }
 
   @override
   void dispose() {
@@ -68,11 +69,12 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
               ),
               SizedBox(height: size.height * 0.045),
               CustomButton(
-                onTap: () => {},
-                //  _socketMethods.joinRoom(
-                //   _nameController.text,
-                //   _gameIdController.text,
-                // ),
+                onTap: () => {
+                  _socketMethods.joinRoom(
+                    _nameController.text,
+                    _gameIdController.text,
+                  ),
+                },
                 text: 'Join',
               ),
             ],
