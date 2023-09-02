@@ -15,6 +15,7 @@ var io= require('socket.io')(server);//Important install socket,io@2.3.0 version
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on("createRoom",async ({nickname})=>{
+      console.log(nickname)
       try {
         // room is created
         let room = new Room();
