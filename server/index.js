@@ -6,7 +6,7 @@ const http = require('http');
 const mongoose= require('mongoose');
 const Room = require("./models/room");
 const app = express();
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000;
 
 var server =http.createServer(app);
 
@@ -15,7 +15,6 @@ var io= require('socket.io')(server);//Important install socket,io@2.3.0 version
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on("createRoom",async ({nickname})=>{
-      console.log(nickname)
       try {
         // room is created
         let room = new Room();
@@ -27,7 +26,6 @@ io.on('connection', (socket) => {
         room.players.push(player);
         room.turn = player;
         room = await room.save();
-        console.log(room);
         const roomId = room._id.toString();
   
         socket.join(roomId);
